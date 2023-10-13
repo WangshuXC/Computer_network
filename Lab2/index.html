@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2110951自我介绍</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .container {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50vw;
+            height: auto;
+            padding: 40px;
+            background-color: #edf4fb;
+            border-radius: 10px;
+            margin-top: 5vh;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            height: 15vh;
+            background-color: white;
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            height: 10%;
+            background-color: white;
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .info p {
+            font-size: inherit;
+            margin: 5px;
+            padding: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+
+        .title {
+            font-size: calc(1em + 3px);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .github {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            background-color: white;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            cursor: pointer;
+        }
+
+        .github:focus,
+        .github:hover {
+            background-color: rgb(231, 231, 231);
+        }
+
+        a.github {
+            text-decoration: none;
+            color: black;
+        }
+
+        .audio {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 40%;
+            height: 5%;
+            background-color: white;
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .audio p {
+            font-size: larger;
+            padding-bottom: 20px;
+            padding: 0;
+        }
+
+        .audio button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            font-size: larger;
+            outline: none;
+            border: none;
+
+        }
+
+        .progressBar {
+            width: 80%;
+            height: 10px;
+            background-color: #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        .progressBarFill {
+            height: 100%;
+            width: 0%;
+            background-color: #c0daf7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="logo">
+                <img src="icon.jpg" alt="logo" class="icon">
+            </div>
+            <div class="info">
+                <p class="title">自我介绍</p>
+                <p>梁晓储</p>
+                <p>2110951</p>
+                <p>物联网工程</p>
+            </div>
+            <a class="github" href="https://www.github.com/wangshuxc" target="_blank">
+                访问我的Github
+            </a>
+            <div class="audio">
+                <p>音频介绍</p>
+                <audio id="audioElement" src="audio.mp3"></audio>
+                <button id="playButton" onclick="togglePlay()"></button>
+                <div class="progressBar">
+                    <div class="progressBarFill" :style="{ width: progress + '%' }"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var audioElement = document.getElementById('audioElement');
+        audioElement.addEventListener('timeupdate', updateProgressBar);
+        audioElement.addEventListener('ended', resetAudio);
+
+        var isPlaying = false;
+        var playButton = document.getElementById('playButton');
+        playButton.textContent = isPlaying ? '⏸' : '▶️';
+        var progress = 0;
+
+        function togglePlay() {
+            if (isPlaying) {
+                audioElement.pause();
+                playButton.textContent = '▶️';
+            } else {
+                audioElement.play();
+                playButton.textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function updateProgressBar() {
+            var progressBarFill = document.querySelector('.progressBarFill');
+            progress = (audioElement.currentTime / audioElement.duration) * 100;
+            progressBarFill.style.width = progress + '%';
+        }
+
+        function resetAudio() {
+            audioElement.currentTime = 0;
+            progress = 0;
+            isPlaying = false;
+            playButton.textContent = '▶️';
+        }
+
+        var audioElement = new Audio('audio.mp3');
+        audioElement.addEventListener('timeupdate', updateProgressBar);
+        audioElement.addEventListener('ended', resetAudio);
+        var isPlaying = false;
+        var progress = 0;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+Lab1/Client/.vs/
+Lab1/Client/Client/x64/
+Lab1/Server/.vs/
+Lab1/Server/Server/x64
+
+*.pdb
+
+*.sln
+
+*.user
+
+*.filters
+
+*.vcxproj
