@@ -4,7 +4,8 @@ const path = require('path');
 const os = require('os');
 
 app.use(express.static(path.join(__dirname, './')));
-
+//如果你想使用我的html模板，记得删除这几行注释
+//2110951
 const port = 6200;
 
 app.listen(port, '0.0.0.0', () => {
