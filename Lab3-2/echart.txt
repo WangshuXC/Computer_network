@@ -1,0 +1,104 @@
+const colors = ['#5470C6', '#91CC75', '#EE6666'];
+option = {
+  color: colors,
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross'
+    }
+  },
+  grid: {
+    right: '20%'
+  },
+  toolbox: {
+    feature: {
+      dataView: { show: true, readOnly: false },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+  legend: {
+    data: ['File size', 'Precipitation', 'Transmission time']
+  },
+  xAxis: [
+    {
+      type: 'category',
+      axisTick: {
+        alignWithLabel: true
+      },
+      // prettier-ignore
+      data: ['helloworld.txt', '1.jpg', '2.jpg', '3.jpg', ]
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: 'File size',
+      position: 'right',
+      alignTicks: true,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: colors[0]
+        }
+      },
+      axisLabel: {
+        formatter: '{value} bytes'
+      }
+    },
+    {
+      type: 'value',
+      name: 'Precipitation',
+      position: 'right',
+      alignTicks: true,
+      offset: 80,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: colors[1]
+        }
+      },
+      axisLabel: {
+        formatter: '{value} bytes/s'
+      }
+    },
+    {
+      type: 'value',
+      name: '时间',
+      position: 'left',
+      alignTicks: true,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: colors[2]
+        }
+      },
+      axisLabel: {
+        formatter: '{value} °C'
+      }
+    }
+  ],
+  series: [
+    {
+      name: 'File size',
+      type: 'bar',
+      data: [
+        1655808, 1857353, 5898505, 11968994, 
+      ]
+    },
+    {
+      name: 'Precipitation',
+      type: 'bar',
+      yAxisIndex: 1,
+      data: [
+        66232.32, 66334.04, 65538.94, 65763.70,
+      ]
+    },
+    {
+      name: 'Transmission time',
+      type: 'line',
+      yAxisIndex: 2,
+      data: [25, 28, 90, 182,]
+    }
+  ]
+};
